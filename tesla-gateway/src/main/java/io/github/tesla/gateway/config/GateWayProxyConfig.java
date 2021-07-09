@@ -13,6 +13,8 @@
  */
 package io.github.tesla.gateway.config;
 
+import io.github.saluki.boot.SalukiReference;
+import io.github.saluki.grpc.service.GenericService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +22,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
-import com.quancheng.saluki.boot.SalukiReference;
 
 import io.github.tesla.gateway.config.eureka.EurekaClientConfigBean;
 import io.github.tesla.gateway.config.eureka.EurekaInstanceConfigBean;
@@ -36,11 +37,11 @@ import io.github.tesla.gateway.protocol.springcloud.DynamicSpringCloudClient;
 public class GateWayProxyConfig {
 
   @Configuration
-  @ConditionalOnClass(com.quancheng.saluki.core.grpc.service.GenericService.class)
+  @ConditionalOnClass(GenericService.class)
   protected class GrpcConfig {
 
     @SalukiReference
-    protected com.quancheng.saluki.core.grpc.service.GenericService generciService;
+    protected GenericService generciService;
 
     @Bean
     protected DynamicGrpcClient dynamicGrpcClient() {
