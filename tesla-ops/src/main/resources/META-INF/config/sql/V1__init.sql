@@ -137,7 +137,7 @@ INSERT INTO `sys_menu` VALUES ('59', '51', '删除', '', 'gateway:apigroup:remov
 -- API管理结束
 -- ----------------------------
 
- 
+
 
 
 
@@ -382,7 +382,7 @@ CREATE TABLE `oauth_code` (
 
 
 
----------------gateway--------------
+-- -------------gateway--------------
 DROP TABLE IF EXISTS `gateway_api_group`;
 
 CREATE TABLE `gateway_api_group` (
@@ -400,7 +400,7 @@ CREATE TABLE `gateway_api_group` (
 INSERT INTO `gateway_api_group` (`id`, `name`, `describe`, `backend_host`, `backend_port`, `backend_path`, `gmt_create`, `gmt_modified`)
 VALUES
 	(1,'DefaultGroup','标准分组','127.0.0.1','8080','/default','2018-02-03 03:52:00','2018-02-03 03:52:00');
- 
+
 
 
 DROP TABLE IF EXISTS `gateway_api`;
@@ -421,7 +421,7 @@ CREATE TABLE `gateway_api` (
   CONSTRAINT `fk_group` FOREIGN KEY (`group_id`) REFERENCES `gateway_api_group` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='api';
 
- 
+
 INSERT INTO `gateway_api` (`id`, `name`, `describe`, `url`, `path`, `routes`, `gmt_create`, `gmt_modified`, `group_id`)
 VALUES
 	(1,'测试API','测试API','/test','/test',0,'2018-04-28 02:01:29','2018-04-28 02:01:29',1),
@@ -461,11 +461,11 @@ CREATE TABLE `gateway_api_springcloud` (
   KEY `fk_sc_api` (`api_id`),
   CONSTRAINT `fk_sc_api` FOREIGN KEY (`api_id`) REFERENCES `gateway_api` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='SpringCloud服务映射表';
- 
+
 INSERT INTO `gateway_api_springcloud` (`id`, `instance_id`, `gmt_create`, `gmt_modified`, `api_id`)
 VALUES
 	(1,'customer-service','2018-04-28 02:01:29','2018-04-28 02:01:29',2);
- 
+
 DROP TABLE IF EXISTS `gateway_filter`;
 
 CREATE TABLE `gateway_filter` (
@@ -479,7 +479,7 @@ CREATE TABLE `gateway_filter` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
- 
+
 INSERT INTO `gateway_filter` (`id`, `filter_type`, `rule`, `api_id`, `group_id`, `gmt_create`, `gmt_modified`)
 VALUES
 	(1,'BlackCookieHttpRequestFilter','\\.\\./\n\\:\\$\n\\$\\{\nselect.+(from|limit)\n(?:(union(.*?)select))\nhaving|rongjitest\nsleep\\((\\s*)(\\d*)(\\s*)\\)\nbenchmark\\((.*)\\,(.*)\\)\nbase64_decode\\(\n(?:from\\W+information_schema\\W)\n(?:(?:current_)user|database|schema|connection_id)\\s*\\(\n(?:etc\\/\\W*passwd)\ninto(\\s+)+(?:dump|out)file\\s*\ngroup\\s+by.+\\(\nxwork.methodaccessor\n(?:define|eval|file_get_contents|include|require|require_once|shell_exec|phpinfo|system|passthru|preg_\\w+|execute|echo|print|print_r|var_dump|(fp)open|alert|showmodaldialog)\\(\nxwork\\.methodaccessor\n(gopher|doc|php|glob|file|phar|zlib|ftp|ldap|dict|ogg|data)\\:\\/\njava\\.lang\n\\$_(get|post|cookie|files|session|env|phplib|globals|server)\\[\n',NULL,NULL,NULL,NULL),
