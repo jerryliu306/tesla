@@ -1,3 +1,4 @@
+package exampledriven.eureka.customer.server;
 /*
  * Copyright 2014-2017 the original author or authors.
  *
@@ -11,21 +12,20 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.github.tesla.backend;
 
-import java.util.ArrayList;
-
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
  * @author liushiming
- * @version Photos.java, v 0.0.1 2018年4月24日 下午12:59:57 liushiming
+ * @version Application.java, v 0.0.1 2018年5月7日 上午10:14:47 liushiming
  */
-public class Photos extends ArrayList<Photo> {
-
-  private static final long serialVersionUID = 1L;
-
-  public Photos() {
-    super();
+@SpringBootApplication
+@EnableEurekaServer
+//@EnableDiscoveryClient
+public class EurekaServerApplication {
+  public static void main(String[] args) throws Exception {
+    SpringApplication.run(EurekaServerApplication.class, args);
   }
-
 }

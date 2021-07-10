@@ -11,35 +11,21 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.github.tesla.backend;
+package io.github.tesla.backend.provider;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+
 
 /**
  * @author liushiming
- * @version User.java, v 0.0.1 2018年5月3日 上午11:50:42 liushiming
+ * @version Photos.java, v 0.0.1 2018年4月24日 下午12:59:57 liushiming
  */
-public class User implements Serializable {
-  private static final long serialVersionUID = -1339494325845059791L;
+public class Photos extends ArrayList<Photo> {
 
-  private String name;
+  private static final long serialVersionUID = 1L;
 
-  private String phone;
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getPhone() {
-    return phone;
-  }
-
-  public void setPhone(String phone) {
-    this.phone = phone;
+  public Photos() {
+    super();
   }
 
 }

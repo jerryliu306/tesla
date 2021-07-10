@@ -1,4 +1,3 @@
-package exampledriven.eureka.customer.server;
 /*
  * Copyright 2014-2017 the original author or authors.
  *
@@ -12,21 +11,35 @@ package exampledriven.eureka.customer.server;
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
+package io.github.tesla.backend.provider;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import java.io.Serializable;
 
 /**
  * @author liushiming
- * @version Application.java, v 0.0.1 2018年5月7日 上午10:14:47 liushiming
+ * @version User.java, v 0.0.1 2018年5月3日 上午11:50:42 liushiming
  */
-@SpringBootApplication
-@EnableEurekaServer
-@EnableDiscoveryClient
-public class EurekaRegistryApplication {
-  public static void main(String[] args) throws Exception {
-    SpringApplication.run(EurekaRegistryApplication.class, args);
+public class User implements Serializable {
+  private static final long serialVersionUID = -1339494325845059791L;
+
+  private String name;
+
+  private String phone;
+
+  public String getName() {
+    return name;
   }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
 }
