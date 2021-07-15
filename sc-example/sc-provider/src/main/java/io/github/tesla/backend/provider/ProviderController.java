@@ -13,7 +13,6 @@
  */
 package io.github.tesla.backend.provider;
 
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,20 +26,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProviderController {
 
 
-  @RequestMapping(value = "test", method = RequestMethod.POST)
-  public String setterMessage1(@RequestBody Photos messages) {
-    System.out.println(messages);
+  @RequestMapping(value = "test", method = {RequestMethod.POST, RequestMethod.GET})
+  public String setterMessage1() {
+    System.out.println("test api");
     String json = "{\"name\": \"test\",\"phone\": \"18616705342\"}";
     return json;
   }
 
-  @RequestMapping(value = "user", method = RequestMethod.POST)
-  public String user(@RequestBody User messages) {
+  @RequestMapping(value = "user", method = {RequestMethod.POST, RequestMethod.GET})
+  public String user() {
     String json = "{\"name\": \"test\",\"phone\": \"18616705342\"}";
     return json;
   }
 
-  @RequestMapping(value = "drools", method = RequestMethod.POST)
+  @RequestMapping(value = "drools", method = {RequestMethod.POST, RequestMethod.GET})
   public String drools() {
     String json = "{\"name\": \"test\",\"phone\": \"18616705342\"}";
     return json;
