@@ -13,7 +13,7 @@
 		<module>tesla-authz</module>
 	</modules>
 	<properties>
-		<springboot.version>1.5.4.RELEASE</springboot.version>
+		<springboot.version>2.3.3.RELEASE</springboot.version>
 		<saluki.version>1.5.9.RELEASE</saluki.version>
 		<dubbo.version>2.6.0</dubbo.version>
 		<netty.version>4.1.16.Final</netty.version>
@@ -38,7 +38,6 @@
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-<!--				<groupId>com.quancheng.saluki</groupId>-->
 				<groupId>io.github.frostingwolf</groupId>
 				<artifactId>spring-boot-starter-saluki</artifactId>
 				<version>${saluki.version}</version>

@@ -14,3 +14,4 @@ eureka:
 spring:
   application:
     name: customer-service
+#ribbon.eureka.enable: false
