@@ -13,9 +13,10 @@
  */
 package io.github.tesla.gateway.config.eureka.util;
 
-import org.springframework.boot.bind.RelaxedPropertyResolver;
-import org.springframework.core.env.PropertyResolver;
+import io.github.tesla.gateway.config.PropertyResolver;
 import org.springframework.util.StringUtils;
+
+import java.util.Properties;
 
 /**
  * @author liushiming
@@ -26,8 +27,10 @@ public class IdUtils {
 
   private static final String SEPARATOR = ":";
 
-  public static String getDefaultInstanceId(PropertyResolver resolver) {
-    RelaxedPropertyResolver relaxed = new RelaxedPropertyResolver(resolver);
+  public static String getDefaultInstanceId(org.springframework.core.env.PropertyResolver resolver) {
+    Properties relaxed = PropertyResolver.getProperties("spring.datasource");
+
+//    RelaxedPropertyResolver relaxed = new RelaxedPropertyResolver(resolver);
     String vcapInstanceId = relaxed.getProperty("vcap.application.instance_id");
     if (StringUtils.hasText(vcapInstanceId)) {
       return vcapInstanceId;

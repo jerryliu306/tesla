@@ -20,10 +20,11 @@
 			<groupId>io.github.tesla</groupId>
 			<artifactId>tesla-common</artifactId>
 		</dependency>
-		<!--<dependency>
+		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy-all</artifactId>
-		</dependency>-->
+			<version>2.4.16</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

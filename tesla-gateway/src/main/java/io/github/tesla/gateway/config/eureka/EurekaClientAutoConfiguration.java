@@ -17,16 +17,16 @@ import static io.github.tesla.gateway.config.eureka.util.IdUtils.getDefaultInsta
 
 import java.net.MalformedURLException;
 import java.util.Map;
+import java.util.Properties;
 
+import io.github.tesla.gateway.config.PropertyResolver;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.SearchStrategy;
-import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.core.env.PropertyResolver;
 import org.springframework.util.StringUtils;
 
 import com.netflix.appinfo.EurekaInstanceConfig;
@@ -67,7 +67,8 @@ public class EurekaClientAutoConfiguration {
   @ConditionalOnMissingBean(value = EurekaClientConfig.class, search = SearchStrategy.CURRENT)
   public EurekaClientConfigBean eurekaClientConfigBean(ConfigurableEnvironment env) {
     EurekaClientConfigBean client = new EurekaClientConfigBean();
-    if ("bootstrap".equals(new RelaxedPropertyResolver(env).getProperty("spring.config.name"))) {
+//    if ("bootstrap".equals(new RelaxedPropertyResolver(env).getProperty("spring.config.name"))) {
+    if ("bootstrap".equals(PropertyResolver.getString("spring.config.name"))) {
       client.setRegisterWithEureka(false);
     }
     return client;
@@ -78,8 +79,11 @@ public class EurekaClientAutoConfiguration {
   public EurekaInstanceConfigBean eurekaInstanceConfigBean(InetUtils inetUtils,
       DefaultManagementMetadataProvider managementMetadataProvider, ConfigurableEnvironment env)
       throws MalformedURLException {
-    PropertyResolver environmentPropertyResolver = new RelaxedPropertyResolver(env);
-    PropertyResolver eurekaPropertyResolver = new RelaxedPropertyResolver(env, "eureka.instance.");
+//    org.springframework.core.env.PropertyResolver environmentPropertyResolver = new RelaxedPropertyResolver(env);
+    org.springframework.core.env.PropertyResolver environmentPropertyResolver = env;
+//    org.springframework.core.env.PropertyResolver eurekaPropertyResolver = new RelaxedPropertyResolver(env, "eureka.instance.");
+    
+    Properties eurekaPropertyResolver = PropertyResolver.getProperties("eureka.instance");
     String hostname = eurekaPropertyResolver.getProperty("hostname");
     boolean preferIpAddress =
         Boolean.parseBoolean(eurekaPropertyResolver.getProperty("preferIpAddress"));
