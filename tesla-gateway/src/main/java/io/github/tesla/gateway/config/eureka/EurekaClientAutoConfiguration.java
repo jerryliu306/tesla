@@ -82,7 +82,7 @@ public class EurekaClientAutoConfiguration {
 //    org.springframework.core.env.PropertyResolver environmentPropertyResolver = new RelaxedPropertyResolver(env);
     org.springframework.core.env.PropertyResolver environmentPropertyResolver = env;
 //    org.springframework.core.env.PropertyResolver eurekaPropertyResolver = new RelaxedPropertyResolver(env, "eureka.instance.");
-    
+
     Properties eurekaPropertyResolver = PropertyResolver.getProperties("eureka.instance");
     String hostname = eurekaPropertyResolver.getProperty("hostname");
     boolean preferIpAddress =
